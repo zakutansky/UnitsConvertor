@@ -2,19 +2,19 @@
 {
     internal class TemperatureConversion : ConversionBase
     {
-        protected override double Convert(double value, MeasureTypes from, MeasureTypes to)
+        protected override double Convert(double value, Units from, Units to)
         {
-            if (from == MeasureTypes.Celsius && to == MeasureTypes.Fahrenheit)
+            if (from == Units.Celsius && to == Units.Fahrenheit)
             {
                 return (value * 9 / 5) + 32;
             }
 
-            if (from == MeasureTypes.Fahrenheit && to == MeasureTypes.Celsius)
+            if (from == Units.Fahrenheit && to == Units.Celsius)
             {
                 return ((value - 32) * 5) / 9;
             }
 
-            if ((from == MeasureTypes.Fahrenheit && to == MeasureTypes.Fahrenheit) || (from == MeasureTypes.Celsius && to == MeasureTypes.Celsius))
+            if ((from == Units.Fahrenheit && to == Units.Fahrenheit) || (from == Units.Celsius && to == Units.Celsius))
             {
                 return value;
             }

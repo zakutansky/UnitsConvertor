@@ -31,11 +31,11 @@ namespace UnitsConvertor.Logic.Conversions
               { SiPrefixes.Yocto, Math.Pow(10,-24) }
         };
 
-        protected abstract double Convert(double value, MeasureTypes from, MeasureTypes to);
+        protected abstract double Convert(double value, Units from, Units to);
 
         internal double Convert(ConversionCommand cmd)
         {
-            if (cmd?.To?.Type == null | cmd?.From?.Type == null) return default;
+            if (cmd?.To?.Unit == null | cmd?.From?.Unit == null) return default;
 
             double finalPrefix = 1;
 
@@ -55,7 +55,7 @@ namespace UnitsConvertor.Logic.Conversions
                 }
             }
 
-            var result = Convert(cmd.Value, cmd.From.Type.Value, cmd.To.Type.Value) * finalPrefix;
+            var result = Convert(cmd.Value, cmd.From.Unit.Value, cmd.To.Unit.Value) * finalPrefix;
 
             return result;
         }

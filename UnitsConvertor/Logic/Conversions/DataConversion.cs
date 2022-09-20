@@ -2,19 +2,19 @@
 {
     internal class DataConversion : ConversionBase
     {
-        protected override double Convert(double value, MeasureTypes from, MeasureTypes to)
+        protected override double Convert(double value, Units from, Units to)
         {
-            if(from == MeasureTypes.Byte && to == MeasureTypes.Bit)
+            if(from == Units.Byte && to == Units.Bit)
             {
                 return value * 8;
             }
 
-            if (from == MeasureTypes.Bit && to == MeasureTypes.Byte)
+            if (from == Units.Bit && to == Units.Byte)
             {
                 return value / 8;
             }
 
-            if ((from == MeasureTypes.Bit && to == MeasureTypes.Bit) || (from == MeasureTypes.Byte && to == MeasureTypes.Byte))
+            if ((from == Units.Bit && to == Units.Bit) || (from == Units.Byte && to == Units.Byte))
             {
                 return value;
             }

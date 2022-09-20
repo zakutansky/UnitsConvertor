@@ -12,27 +12,27 @@ namespace UnitsConvertor.InputHanlding
 {
     public class ConversionHandler
     {
-        private readonly Dictionary<List<MeasureTypes>, Type> _conversionMapping = new Dictionary<List<MeasureTypes>, Type>()
+        private readonly Dictionary<List<Units>, Type> _conversionMapping = new Dictionary<List<Units>, Type>()
         {
-            { new List<MeasureTypes> {MeasureTypes.Meter, MeasureTypes.Foot, MeasureTypes.Inch }, typeof(LengthConversion) },
-            { new List<MeasureTypes> {MeasureTypes.Byte, MeasureTypes.Bit }, typeof(DataConversion) },
-            { new List<MeasureTypes> {MeasureTypes.Celsius, MeasureTypes.Fahrenheit }, typeof(TemperatureConversion) },
+            { new List<Units> {Units.Meter, Units.Foot, Units.Inch }, typeof(LengthConversion) },
+            { new List<Units> {Units.Byte, Units.Bit }, typeof(DataConversion) },
+            { new List<Units> {Units.Celsius, Units.Fahrenheit }, typeof(TemperatureConversion) },
         };
 
         private ConversionBase _conversion;
 
-        private readonly IEnumerable<MeasureTypes> _measureTypes;
+        private readonly IEnumerable<Units> _units;
 
         private readonly IEnumerable<SiPrefixes> _prefixes;
 
         public ConversionHandler()
         {
-            _measureTypes = Enum.GetValues(typeof(MeasureTypes)).OfType<MeasureTypes>();
+            _units = Enum.GetValues(typeof(Units)).OfType<Units>();
             _prefixes = Enum.GetValues(typeof(SiPrefixes)).OfType<SiPrefixes>();
         }
 
         /// <summary>
-        /// Converts units between different kinds of measure types.
+        /// Convert quantities between different units.
         /// Exmaple format: 3 GB b
         /// </summary>
         /// <param name="input"></param>
@@ -47,14 +47,14 @@ namespace UnitsConvertor.InputHanlding
         }
 
         /// <summary>
-        /// Returns symbols for measure types and prefixes.
+        /// Returns symbols for units and prefixes.
         /// </summary>
         /// <returns></returns>
         public string Help()
         {
             var result = new StringBuilder();
 
-            foreach (var mt in _measureTypes)
+            foreach (var mt in _units)
             {
                 result.AppendLine($"{mt} - {mt.GetSymbol()}");
             }
@@ -85,14 +85,14 @@ namespace UnitsConvertor.InputHanlding
             cmd.From = GetMeasure(parts[1]);
             cmd.To = GetMeasure(parts[2]);
 
-            if(cmd.From.Type == null || cmd.To.Type == null)
+            if(cmd.From.Unit == null || cmd.To.Unit == null)
                 throw new Exception("Wrong input format");
 
             bool isConversionValid = false;
 
             foreach (var cm in _conversionMapping)
             {
-                if (cm.Key.Contains(cmd.From.Type.Value) && cm.Key.Contains(cmd.To.Type.Value))
+                if (cm.Key.Contains(cmd.From.Unit.Value) && cm.Key.Contains(cmd.To.Unit.Value))
                 {
                     isConversionValid = true;
                     _conversion = (ConversionBase) Activator.CreateInstance(cm.Value);
@@ -110,14 +110,14 @@ namespace UnitsConvertor.InputHanlding
         {
             var measure = new Measure();
 
-            foreach (var mt in _measureTypes)
+            foreach (var mt in _units)
             {
                 var mtSymbol = mt.GetSymbol();
 
                 if (input.EndsWith(mtSymbol))
                 {
                     input = input.Substring(0, input.LastIndexOf(mtSymbol));
-                    measure.Type = mt;
+                    measure.Unit = mt;
                     break;
                 }
             }

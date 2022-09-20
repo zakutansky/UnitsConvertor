@@ -2,41 +2,41 @@
 {
     internal class LengthConversion : ConversionBase
     {
-        protected override double Convert(double value, MeasureTypes from, MeasureTypes to)
+        protected override double Convert(double value, Units from, Units to)
         {
-            if (from == MeasureTypes.Meter && to == MeasureTypes.Foot)
+            if (from == Units.Meter && to == Units.Foot)
             {
                 return value * 3.281;
             }
 
-            if (from == MeasureTypes.Foot && to == MeasureTypes.Meter)
+            if (from == Units.Foot && to == Units.Meter)
             {
                 return value / 3.281;
             }
 
-            if (from == MeasureTypes.Meter && to == MeasureTypes.Inch)
+            if (from == Units.Meter && to == Units.Inch)
             {
                 return value * 39.37;
             }
 
-            if (from == MeasureTypes.Inch && to == MeasureTypes.Meter)
+            if (from == Units.Inch && to == Units.Meter)
             {
                 return value / 39.37;
             }
 
-            if (from == MeasureTypes.Foot && to == MeasureTypes.Inch)
+            if (from == Units.Foot && to == Units.Inch)
             {
                 return value * 12;
             }
 
-            if (from == MeasureTypes.Inch && to == MeasureTypes.Foot)
+            if (from == Units.Inch && to == Units.Foot)
             {
                 return value / 12;
             }
 
-            if ((from == MeasureTypes.Meter && to == MeasureTypes.Meter) 
-                || (from == MeasureTypes.Foot && to == MeasureTypes.Foot)
-                || (from == MeasureTypes.Inch && to == MeasureTypes.Inch))
+            if ((from == Units.Meter && to == Units.Meter) 
+                || (from == Units.Foot && to == Units.Foot)
+                || (from == Units.Inch && to == Units.Inch))
             {
                 return value;
             }

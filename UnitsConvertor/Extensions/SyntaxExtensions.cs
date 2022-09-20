@@ -10,9 +10,9 @@ namespace UnitsConvertor.Extensions
             return SymbolAttribute.GetSymbol(prefix);
         }
 
-        public static string GetSymbol(this MeasureTypes mt)
+        public static string GetSymbol(this Units unit)
         {
-            return SymbolAttribute.GetSymbol(mt);
+            return SymbolAttribute.GetSymbol(unit);
         }
     }
 }

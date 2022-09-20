@@ -2,7 +2,7 @@
 
 namespace UnitsConvertor
 {
-    public enum MeasureTypes
+    public enum Units
     {
         [Symbol("m")]
         Meter,

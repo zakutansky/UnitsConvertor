@@ -5,7 +5,7 @@ namespace UnitsConvertor.Objects
 {
     internal class Measure
     {
-        public MeasureTypes? Type { get; set; }
+        public Units? Unit { get; set; }
 
         public SiPrefixes? Prefix { get; set; }
 
@@ -14,7 +14,7 @@ namespace UnitsConvertor.Objects
             var result = string.Empty;
 
             if (Prefix != null) result = Prefix.Value.GetSymbol();
-            if (Type != null) result += Type.Value.GetSymbol();
+            if (Unit != null) result += Unit.Value.GetSymbol();
 
             return result;
         }
