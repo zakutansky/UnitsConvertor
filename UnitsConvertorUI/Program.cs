@@ -9,7 +9,7 @@ namespace UnitsConvertorUI
             var ch = new ConversionHandler();
             Console.WriteLine(ch.Help());
             Console.WriteLine("Use shortcuts for converion");
-            Console.WriteLine("Example: 35 mB Gb");
+            Console.WriteLine("Example: 35 MB Gb");
             Console.WriteLine();
 
             while (true)
