@@ -3,7 +3,7 @@ using UnitsConvertor.Extensions;
 
 namespace UnitsConvertor.Objects
 {
-    internal class Measure
+    internal class ConversionUnit
     {
         public Units? Unit { get; set; }
 

@@ -7,8 +7,8 @@ namespace UnitsConvertor.Data
     {
         public double Value { get; set; }
 
-        public Measure From { get; set; }
+        public ConversionUnit From { get; set; }
 
-        public Measure To { get; set; }
+        public ConversionUnit To { get; set; }
     }
 }

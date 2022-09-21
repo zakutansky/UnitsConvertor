@@ -106,9 +106,9 @@ namespace UnitsConvertor.InputHanlding
             return cmd;
         }
 
-        private Measure GetMeasure(string input)
+        private ConversionUnit GetMeasure(string input)
         {
-            var measure = new Measure();
+            var measure = new ConversionUnit();
 
             foreach (var mt in _units)
             {
